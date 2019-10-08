@@ -1,0 +1,15 @@
+/*	
+*	Arquivo de Folha de Estilo 	
+*	TechMob - Empresa Junior da Faculdade de Computacao UFU
+*	Autor: Marcelo Prado e Lucas Josino
+*	Data de Modificaçao: 28/09/2015
+*/
+
+canvas {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin: auto;
+}
