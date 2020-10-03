@@ -404,6 +404,8 @@ function main(fps){
 * @see atualiza(); e desenha();
 */
 function roda(){
+	window.requestAnimationFrame(roda);	
+
 	now = Date.now();
     elapsed = now - then;
 
@@ -419,8 +421,6 @@ function roda(){
 		atualiza();
 		desenha();
 	}
-
-	window.requestAnimationFrame(roda);	
 }
 
 /*
