@@ -14,6 +14,13 @@ record, //Pontuacao maxima
 novoRecord = 0, //Verifica se houve novo record
 dx = 3, //velocidade de decremento da posicao X dos objetos
 contador = 0, 
+fps, 
+fpsInterval, 
+startTime, 
+now, 
+then, 
+elapsed,
+
 estados = {
 	jogando: 0,
 	perdeu: 1
@@ -363,7 +370,7 @@ plataforma = {
 * carregar.
 */
 window.onload = function(){
-	main();
+	main(60);
 }
 
 /*
@@ -371,10 +378,14 @@ window.onload = function(){
 * do mouse e da inicio ao jogo.
 * @see roda();
 */
-function main(){	
+function main(fps){	
 	canvas = document.createElement("canvas");
 	canvas.width = LARGURA;
 	canvas.height = ALTURA;
+	fpsInterval = 1000 / fps;
+    then = Date.now();
+    startTime = then;    
+
 	canvas.style.border = "1px solid #000";	
 	
 	ctx = canvas.getContext("2d");	
@@ -393,14 +404,22 @@ function main(){
 * @see atualiza(); e desenha();
 */
 function roda(){
-	record = localStorage.getItem("record");
+	now = Date.now();
+    elapsed = now - then;
 
-	if(record == null){
-		record = 0;
+    if (elapsed > fpsInterval) {
+		then = now - (elapsed % fpsInterval);
+
+		record = localStorage.getItem("record");
+
+		if(record == null){
+			record = 0;
+		}
+
+		atualiza();
+		desenha();
 	}
 
-	atualiza();
-	desenha();
 	window.requestAnimationFrame(roda);	
 }
 
